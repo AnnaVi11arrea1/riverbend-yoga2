@@ -1,0 +1,127 @@
+body {
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: rgb(240, 234, 198);
+}
+
+.macondo-regular {
+  font-family: "Macondo", cursive;
+  font-style: normal;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Macondo", cursive;
+}
+
+li {
+    margin: 10px 0;
+}
+
+img {
+    border: 3px solid #ffffff;
+}
+
+.welcome-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    padding: 40px 10px;
+    font-family: "Macondo", cursive;
+    font-size: 1.5em;
+    color: #086049;
+    background-image: url('photos/yoga-feature-large_c.png');
+    background-size: cover;
+    background-position: bottom;
+}
+
+.welcome-text {
+    max-width: 600px;
+    margin: 0 auto;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.9));
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 5px 10px;
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav li {
+    margin: 0 25px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+}
+.nav li:hover {
+    background-color: #e0f2f1;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #086049;
+    font-weight: bold;
+}
+
+section {
+    padding: 30px 15px;
+    max-width: 800px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2em;
+    color: #086049;
+    border-top: 2px solid #cf8f3d;
+    border-radius: 15px;
+}
+
+section img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+input, textarea, select, button {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #7d5827;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin: 10px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #ffffff;
+    border-top: 2px solid #cf8f3d;
+    font-family: "Macondo", cursive;
+    color: #086049;
+}

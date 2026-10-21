@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riverbend Yoga Events</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="nav">
+        <img src="photos/yoga-logo_c.png" alt="Riverbend Yoga Logo" style="width:100px;height:auto;">
+        <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="events.html">Events</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+        <h1>Monthly Workshops</h1>
+        <picture>
+            <source srcset="photos/yoga-workshop_c.png" type="image/png">
+            <img src="photos/yoga-workshop_c.png" alt="A group of people participating in a yoga class"
+                style="width:100%;height:auto;">
+        </picture>
+        </section>
+        <section>
+        <h2>Upcoming Events</h2>
+        <ul>
+            <li>January: New Year Yoga Retreat</li>
+            <li>February: Heart-Opening Workshop</li>
+            <li>March: Spring Detox Yoga</li>
+            <li>April: Mindfulness and Meditation</li>
+            <li>May: Partner Yoga Workshop</li>
+            <li>June: Summer Solstice Celebration</li>
+            <li>July: Outdoor Yoga Series</li>
+            <li>August: Restorative Yoga Intensive</li>
+            <li>September: Back-to-School Stress Relief</li>
+            <li>October: Halloween Yoga Bash</li>
+            <li>November: Gratitude and Yoga</li>
+            <li>December: Holiday Yoga Celebration</li>
+        </ul>
+        </section>
+        <section>
+        <h2>Get Started Today</h2>
+        <h3>Please fill out the form below to inquire about our events or reach out for more information.</h3>
+        <form action="submit_request.php" method="post">
+            <fieldset>
+                <legend>Personal Information</legend>
+            <label for="name"><h3>1. Name: (Required)</h3></label>
+            <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="70">
+            <br>
+            <label for="email"><h3>2. Email: (Required)</h3></label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <br>
+            <label for="phone"><h3>3. Phone: (Required)</h3></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" required pattern="[0-9()+\-\s]{7,20}" title="Please enter a phone number, e.g. (123) 456-7890">
+            <br>
+            </fieldset>
+            <fieldset>
+                <legend>Event Information - Optional</legend>
+            <label for="event"><h3>4. Event: </h3></label>
+            <select id="event" name="event">
+                <option value="" disabled selected>Select an event</option>
+                <option value="January: New Year Yoga Retreat">January: New Year Yoga Retreat</option>
+                <option value="February: Heart-Opening Workshop">February: Heart-Opening Workshop</option>
+                <option value="March: Spring Detox Yoga">March: Spring Detox Yoga</option>
+                <option value="April: Mindfulness and Meditation">April: Mindfulness and Meditation</option>
+                <option value="May: Partner Yoga Workshop">May: Partner Yoga Workshop</option>
+                <option value="June: Summer Solstice Celebration">June: Summer Solstice Celebration</option>
+                <option value="July: Outdoor Yoga Series">July: Outdoor Yoga Series</option>
+                <option value="August: Restorative Yoga Intensive">August: Restorative Yoga Intensive</option>
+                <option value="September: Back-to-School Stress Relief">September: Back-to-School Stress Relief</option>
+                <option value="October: Halloween Yoga Bash">October: Halloween Yoga Bash</option>
+                <option value="November: Gratitude and Yoga">November: Gratitude and Yoga</option>
+                <option value="December: Holiday Yoga Celebration">December: Holiday Yoga Celebration</option>
+            </select>
+            <br>
+            <label for="experience"><h3>5. Experience Level: </h3></label>
+            <select id="experience" name="experience">
+                <option value="" disabled selected>Select your experience level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+            <br>
+            <label for="contact"><h3>6. Contact Preference: </h3></label>
+            <select id="contact" name="contact">
+                <option value="" disabled selected>Select your contact preference</option>
+                <option value="Email">Email</option>
+                <option value="Phone">Phone</option>
+            </select>
+            <br>
+        </form>
+        </section>
+        <section>
+            <label for="comments"><h3>7. Additional Comments:</h3></label>
+            <textarea id="comments" name="comments" rows="4" cols="30" maxlength="500"></textarea>
+            <br>
+        </section>
+        </fieldset>
+
+        <section>
+            <label for="consent"><h3>8. Consent: (Required)</h3></label>
+            <input type="checkbox" id="consent" name="consent" required> 
+            I understand a team member will use this information to contact me.
+            <label for="promotions"><h3>9. Promotions: </h3></label>
+            <input type="checkbox" id="promotions" name="promotions">
+            I would like to receive promotional emails and updates related to Riverbend Yoga events and offerings.
+            <br>
+            <br>
+            <button type="submit">Submit Inquiry</button>
+        </section>
+        </form>
+        <section>
+        <h3>Thank you for your interest in Riverbend Yoga events!</h3>
+        </section>
+    
+    </main>
+    <footer>
+        <p>&copy; 2026 Riverbend Yoga. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
