@@ -168,6 +168,42 @@ footer {
     color: #086049;
 }
 
+/* Multi-select event dropdown (built by index.js) */
+.multi-select {
+    position: relative;
+    width: 50%;
+}
+
+.multi-select-toggle {
+    width: 100%;
+    text-align: left;
+}
+
+.multi-select-panel {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #086049;
+    border: 1px solid #7d5827;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+}
+
+.multi-select-panel label {
+    display: block;
+    cursor: pointer;
+}
+
+.multi-select-panel input[type="checkbox"] {
+    margin: 8px 6px 8px 0;
+}
+
 /* Small devices (phones) */
 @media (max-width: 600px) {
     .nav {
@@ -203,5 +239,9 @@ footer {
     input, textarea, select, button {
         width: 100%;
         box-sizing: border-box;
+    }
+
+    .multi-select {
+        width: 100%;
     }
 }
