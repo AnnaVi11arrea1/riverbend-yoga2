@@ -168,6 +168,11 @@ footer {
     color: #086049;
 }
 
+/* Hamburger button (built by index.js), hidden on large screens */
+.nav-toggle {
+    display: none;
+}
+
 /* Multi-select event dropdown (built by index.js) */
 .multi-select {
     position: relative;
@@ -220,6 +225,31 @@ footer {
     .nav li {
         margin: 4px;
         padding: 8px 12px;
+    }
+
+    /* With JavaScript running: logo and ☰ on one row, links hidden until opened */
+    .nav-collapsible {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .nav-collapsible .nav-toggle {
+        display: block;
+        width: auto;
+        margin: 0;
+        padding: 5px 14px;
+        font-size: 1.6em;
+        line-height: 1;
+    }
+
+    .nav-collapsible ul {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-collapsible.open ul {
+        display: flex;
     }
 
     .welcome-section {

@@ -80,3 +80,33 @@ document.addEventListener('DOMContentLoaded', function () {
     updateToggleText();
 });
 
+
+// Hamburger menu: on small screens, hide the nav links behind a ☰ button
+document.addEventListener('DOMContentLoaded', function () {
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    const menu = nav.querySelector('ul');
+    menu.id = 'nav-menu';
+
+    const menuButton = document.createElement('button');
+    menuButton.type = 'button';
+    menuButton.className = 'nav-toggle';
+    menuButton.textContent = '☰';
+    menuButton.setAttribute('aria-label', 'Open menu');
+    menuButton.setAttribute('aria-controls', 'nav-menu');
+    menuButton.setAttribute('aria-expanded', 'false');
+
+    // Only collapse the links once JavaScript is running, so the nav still works without it
+    nav.classList.add('nav-collapsible');
+
+    menuButton.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('open');
+        menuButton.textContent = isOpen ? '✕' : '☰';
+        menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Put the button between the logo and the links
+    nav.insertBefore(menuButton, menu);
+});
