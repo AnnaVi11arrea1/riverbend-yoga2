@@ -16,10 +16,10 @@
     <nav class="nav">
         <img src="photos/yoga-logo_c.png" alt="Riverbend Yoga Logo" style="width:100px;height:auto;">
         <ul>
-            <li><a href="index.html" aria-current="page">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="index.html" aria-current="page" data-i18n="nav-home">Home</a></li>
+            <li><a href="about.html" data-i18n="nav-about">About</a></li>
+            <li><a href="services.html" data-i18n="nav-services">Services</a></li>
+            <li><a href="events.html" data-i18n="nav-events">Events</a></li>
         </ul>
     </nav>
     <main>
@@ -51,25 +51,28 @@
         <section>
             <h2>Get Started Today</h2>
             <h3>Please fill out the form below to inquire about our events or reach out for more information.</h3>
-            <form action="submit_request.php" method="post">
+            <!-- novalidate turns off the browser's pop-up messages so index.js can show its own -->
+            <form id="inquiry-form" action="submit_request.php" method="post" novalidate>
                 <fieldset>
                     <legend>Personal Information</legend>
                     <label for="name">
                         <h3>1. Name: (Required)</h3>
                     </label>
-                    <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="70">
-                    <br>
+                    <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="70"
+                        aria-describedby="name-error">
+                    <p class="error-message" id="name-error"></p>
                     <label for="email">
                         <h3>2. Email: (Required)</h3>
                     </label>
-                    <input type="email" id="email" name="email" autocomplete="email" required>
-                    <br>
+                    <input type="email" id="email" name="email" autocomplete="email" required
+                        aria-describedby="email-error">
+                    <p class="error-message" id="email-error"></p>
                     <label for="phone">
                         <h3>3. Phone: (Required)</h3>
                     </label>
                     <input type="tel" id="phone" name="phone" autocomplete="tel" required pattern="[0-9()+\-\s]{7,20}"
-                        title="Please enter a phone number, e.g. (123) 456-7890">
-                    <br>
+                        title="Please enter a phone number, e.g. (123) 456-7890" aria-describedby="phone-error">
+                    <p class="error-message" id="phone-error"></p>
                 </fieldset>
                 <fieldset>
                     <legend>Event Information - Optional</legend>
@@ -112,33 +115,31 @@
                         <option value="Phone">Phone</option>
                     </select>
                     <br>
+                    <label for="comments">
+                        <h3>7. Additional Comments:</h3>
+                    </label>
+                    <textarea id="comments" name="comments" rows="4" cols="30" maxlength="500"></textarea>
+                    <br>
+                </fieldset>
+
+                <label for="consent">
+                    <h3>8. Consent: (Required)</h3>
+                </label>
+                <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-error">
+                I understand a team member will use this information to contact me.
+                <p class="error-message" id="consent-error"></p>
+                <label for="promotions">
+                    <h3>9. Promotions: </h3>
+                </label>
+                <input type="checkbox" id="promotions" name="promotions">
+                I would like to receive promotional emails and updates related to Riverbend Yoga events and offerings.
+                <br>
+                <br>
+                <button type="submit">Submit Inquiry</button>
+                <!-- role="status" makes screen readers announce the message when it changes -->
+                <p class="form-status" id="form-status" role="status"></p>
             </form>
-
-
-            <label for="comments">
-                <h3>7. Additional Comments:</h3>
-            </label>
-            <textarea id="comments" name="comments" rows="4" cols="30" maxlength="500"></textarea>
-            <br>
-
-            </fieldset>
-
-
-            <label for="consent">
-                <h3>8. Consent: (Required)</h3>
-            </label>
-            <input type="checkbox" id="consent" name="consent" required>
-            I understand a team member will use this information to contact me.
-            <label for="promotions">
-                <h3>9. Promotions: </h3>
-            </label>
-            <input type="checkbox" id="promotions" name="promotions">
-            I would like to receive promotional emails and updates related to Riverbend Yoga events and offerings.
-            <br>
-            <br>
-            <button type="submit">Submit Inquiry</button>
         </section>
-        </form>
         <section>
             <h4>Thank you for your interest in Riverbend Yoga events!</h4>
         </section>

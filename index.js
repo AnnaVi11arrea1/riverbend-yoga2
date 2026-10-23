@@ -120,3 +120,174 @@ document.addEventListener('DOMContentLoaded', function () {
     // Put the button between the logo and the links
     nav.insertBefore(menuButton, menu);
 });
+
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+//
+// Form validation for the inquiry form on the events page
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('inquiry-form');
+    if (!form) return;
+
+    const status = document.getElementById('form-status');
+
+    // The required fields and the message to show for each kind of problem
+    // fields is an array of objects. 
+    const fields = [
+        {
+            input: document.getElementById('name'),
+            missing: 'Please enter your name.',
+            invalid: 'Your name must be at least 2 characters.'
+        },
+        {
+            input: document.getElementById('email'),
+            missing: 'Please enter your email address.',
+            invalid: 'Please enter a valid email, e.g. name@example.com.'
+        },
+        {
+            input: document.getElementById('phone'),
+            missing: 'Please enter your phone number.',
+            invalid: 'Please enter a valid phone number, e.g. (123) 456-7890.'
+        },
+        {
+            input: document.getElementById('consent'),
+            missing: 'Please check this box so we can contact you.'
+        }
+    ];
+
+    // Check one field against its HTML rules (required, minlength, type="email", pattern)
+    // Returns true if it's valid, and shows or clears its error message
+    function validateField(field) {
+        const input = field.input;
+        const errorMessage = document.getElementById(input.id + '-error');
+        let message = '';
+
+        // For text fields, ignore spaces typed on their own
+        if (input.type !== 'checkbox') {
+            input.value = input.value.trim();
+        }
+
+        if (input.validity.valueMissing) {
+            message = field.missing;
+        } else if (!input.validity.valid || (input.minLength > 0 && input.value.length < input.minLength)) {
+            message = field.invalid;
+        }
+
+        errorMessage.textContent = message;
+        input.classList.toggle('invalid', message !== '');
+        input.setAttribute('aria-invalid', String(message !== ''));
+        return message === '';
+    }
+
+    // Check a field again when the user leaves it, and clear its error as soon as it's fixed
+    fields.forEach(function (field) {
+        field.input.addEventListener('blur', function () {
+            validateField(field);
+        });
+        field.input.addEventListener('input', function () {
+            if (field.input.classList.contains('invalid')) validateField(field);
+        });
+        field.input.addEventListener('change', function () {
+            if (field.input.classList.contains('invalid')) validateField(field);
+        });
+    });
+
+    form.addEventListener('submit', function (e) {
+        // Stop the page from submitting so we can check the fields first
+        e.preventDefault();
+
+        let firstInvalid = null;
+        fields.forEach(function (field) {
+            if (!validateField(field) && !firstInvalid) firstInvalid = field.input;
+        });
+
+        if (firstInvalid) {
+            status.textContent = 'Please fix the highlighted fields above.';
+            status.className = 'form-status error';
+            firstInvalid.focus(); // move the cursor to the first problem
+            return;
+        }
+
+        // Everything is valid. There's no server to send to yet, so show a thank-you message.
+        // (If you add one later, call form.submit() here instead.)
+        const name = document.getElementById('name').value;
+        status.textContent = 'Thank you, ' + name + '! Your inquiry has been received. We will be in touch soon.';
+        status.className = 'form-status success';
+        form.reset();
+
+        // Reset the event dropdown's button text too, since its checkboxes were just cleared
+        const eventPanel = document.querySelector('.multi-select-panel');
+        if (eventPanel) eventPanel.dispatchEvent(new Event('change'));
+    });
+});
+
+// Language switcher: remembers the user's choice with localStorage
+document.addEventListener('DOMContentLoaded', function () {
+    // The text for each language, looked up by the element's data-i18n name
+    // Storing the translations in an object for easy lookup.
+    const translations = {
+        en: {
+            'nav-home': 'Home',
+            'nav-about': 'About',
+            'nav-services': 'Services',
+            'nav-events': 'Events',
+            'welcome-title': 'Welcome to Riverbend Yoga Studio',
+            'welcome-tagline': '~ Your journey to wellness begins here ~'
+        },
+        es: {
+            'nav-home': 'Inicio',
+            'nav-about': 'Nosotros',
+            'nav-services': 'Servicios',
+            'nav-events': 'Eventos',
+            'welcome-title': 'Bienvenidos a Riverbend Yoga Studio',
+            'welcome-tagline': '~ Tu camino hacia el bienestar comienza aquí ~'
+        },
+        fr: {
+            'nav-home': 'Accueil',
+            'nav-about': 'À propos',
+            'nav-services': 'Services',
+            'nav-events': 'Événements',
+            'welcome-title': 'Bienvenue au studio Riverbend Yoga',
+            'welcome-tagline': '~ Votre chemin vers le bien-être commence ici ~'
+        },
+        pl: {
+            'nav-home': 'Strona główna',
+            'nav-about': 'O nas',
+            'nav-services': 'Usługi',
+            'nav-events': 'Wydarzenia',
+            'welcome-title': 'Witamy w studiu Riverbend Yoga',
+            'welcome-tagline': '~ Twoja droga do dobrego samopoczucia zaczyna się tutaj ~'
+        },
+        de: {
+            'nav-home': 'Startseite',
+            'nav-about': 'Über uns',
+            'nav-services': 'Angebote',
+            'nav-events': 'Veranstaltungen',
+            'welcome-title': 'Willkommen im Riverbend Yoga Studio',
+            'welcome-tagline': '~ Ihr Weg zum Wohlbefinden beginnt hier ~'
+        }
+    };
+
+    // Swap every marked element's text to the chosen language
+    function applyLanguage(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+            const key = element.dataset.i18n;
+            if (translations[lang][key]) element.textContent = translations[lang][key]; // missing text stays as-is
+        });
+        document.documentElement.lang = lang; // updates <html lang="..."> for screen readers
+    }
+
+    // Read the saved choice; if there isn't one (or it's not a language we have), use English
+    let savedLanguage = localStorage.getItem('language');
+    if (!translations[savedLanguage]) savedLanguage = 'en';
+    applyLanguage(savedLanguage);
+
+    const picker = document.getElementById('language-picker');
+    if (picker) {
+        picker.value = savedLanguage; // show the saved choice in the dropdown
+        picker.addEventListener('change', function () {
+            localStorage.setItem('language', picker.value); // remember it for next time
+            applyLanguage(picker.value);
+        });
+    }
+});

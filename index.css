@@ -69,6 +69,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap; /* if things still don't fit, move to a new row instead of off the screen */
     background-color: #ffffff;
     padding: 5px 10px;
     font-family: "Macondo", cursive;
@@ -168,6 +169,15 @@ footer {
     color: #086049;
 }
 
+/* Language picker in the nav */
+.language-picker {
+    width: auto;
+    margin: 0;
+    padding: 5px 8px;
+    color: #086049;
+    font-family: "Macondo", cursive;
+}
+
 /* Hamburger button (built by index.js), hidden on large screens */
 .nav-toggle {
     display: none;
@@ -209,6 +219,47 @@ footer {
     margin: 8px 6px 8px 0;
 }
 
+/* Form validation feedback (shown by index.js) */
+.error-message {
+    color: #ffb4a8;
+    font-size: 0.85em;
+    margin: 0 0 10px;
+    min-height: 1em;
+}
+
+input.invalid {
+    border: 2px solid #ff8a7a;
+    background-color: #fff0ee;
+}
+
+input[type="checkbox"].invalid {
+    outline: 2px solid #ff8a7a;
+}
+
+.form-status {
+    font-weight: bold;
+}
+
+.form-status.error {
+    color: #ffb4a8;
+}
+
+.form-status.success {
+    color: #b9f6ca;
+}
+
+/* Medium screens (tablets, narrow desktop windows): tighten the nav links so the language picker fits */
+@media (max-width: 900px) {
+    .nav ul {
+        padding: 0 10px;
+    }
+
+    .nav li {
+        margin: 0 4px;
+        padding: 8px 12px;
+    }
+}
+
 /* Small devices (phones) */
 @media (max-width: 600px) {
     .nav {
@@ -242,7 +293,20 @@ footer {
         line-height: 1;
     }
 
+    /* Order on phones: logo, language picker, ☰, then the links on their own row */
+    .nav-collapsible .language-picker {
+        order: 1;
+        width: auto;
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .nav-collapsible .nav-toggle {
+        order: 2;
+    }
+
     .nav-collapsible ul {
+        order: 3;
         display: none;
         flex-direction: column;
         text-align: center;

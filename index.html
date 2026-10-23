@@ -18,19 +18,26 @@
         <img src="photos/yoga-logo_c.png" alt="Riverbend Yoga Logo" style="width:100px;height:auto;">
         
         <ul>
-            <li><a href="index.html" aria-current="page">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="index.html" aria-current="page" data-i18n="nav-home">Home</a></li>
+            <li><a href="about.html" data-i18n="nav-about">About</a></li>
+            <li><a href="services.html" data-i18n="nav-services">Services</a></li>
+            <li><a href="events.html" data-i18n="nav-events">Events</a></li>
         </ul>
+        <select id="language-picker" class="language-picker" aria-label="Language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="pl">Polski</option>
+            <option value="de">Deutsch</option>
+        </select>
     </nav>
     <main>
         <div class="welcome-section">
             <div>
             </div>
             <div class="welcome-text">
-                <h1>Welcome to Riverbend Yoga Studio</h1>
-                <p><i>~ Your journey to wellness begins here ~</i></p>
+                <h1 data-i18n="welcome-title">Welcome to Riverbend Yoga Studio</h1>
+                <p><i data-i18n="welcome-tagline">~ Your journey to wellness begins here ~</i></p>
             </div>
         </div>
         <section>
